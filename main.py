@@ -11,7 +11,7 @@ load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
-bot = commands.Bot(command_prefix="!!",intents=discord.Intents.all(),application_id=int(os.getenv("BOTttttttttttttttttttt_ID")))
+bot = commands.Bot(command_prefix="!!",intents=discord.Intents.all(),application_id=int(os.getenv("BOTtttttttttttttttttt_ID")))
 
 class SubButton(discord.ui.View):
     def __init__(self):
