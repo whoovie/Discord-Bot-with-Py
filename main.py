@@ -22,7 +22,7 @@ class SubButton(discord.ui.View):
 
 @bot.event
 async def on_ready(): 
-    print("Estou online!")
+    print("I am online!")
 
 @bot.command()
 @commands.is_owner() 
