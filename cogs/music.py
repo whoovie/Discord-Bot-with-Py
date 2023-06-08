@@ -74,13 +74,13 @@ class music(commands.Cog):
             self.is_playing = False
             await self.vc.disconnect()
 
-    @app_commands.command(name="ajuda",description="Mostre um comando de ajuda.")
+    @app_commands.command(name="help",description="show a command of help.")
     async def help(self,interaction:discord.Interaction):
         await interaction.response.defer(thinking=True)
-        helptxt = "`/ajuda` - Veja esse guia!\n`/play` - Toque uma música \n`/fila` - Veja a fila de músicas\n`/pular` - skipa para a próxima música da fila"
+        helptxt = "`/help` - See a guide!\n`/play` - Play a song \n`/quequ` - see the queue of songs\n`/skip` - skip to the next song"
         embedhelp = discord.Embed(
             colour = 1646116,#agua
-            title=f'Comandos do {self.client.user.name}',
+            title=f'commands of {self.client.user.name}',
             description = helptxt
         )
         try:
@@ -90,9 +90,9 @@ class music(commands.Cog):
         await interaction.followup.send(embed=embedhelp,view=TutorialButton())
 
 
-    @app_commands.command(name="play",description="Toca uma música.")
+    @app_commands.command(name="play",description="paly a song.")
     @app_commands.describe(
-        busca = "Nome da música"
+        busca = "name of the song"
     )
     async def play(self, interaction:discord.Interaction,busca:str):
         await interaction.response.defer(thinking=True)
@@ -105,7 +105,7 @@ class music(commands.Cog):
             #you need to be connected so that the bot knows where to go
             embedvc = discord.Embed(
                 colour= 1646116,#grey
-                description = 'Tem que estar em um chat de voz né...'
+                description = 'you need to be in a voice chat...'
             )
             await interaction.followup.send(embed=embedvc)
             return
@@ -114,13 +114,13 @@ class music(commands.Cog):
             if type(song) == type(True):
                 embedvc = discord.Embed(
                     colour= 12255232,#red
-                    description = 'deu erro! Pedi ai a música dnv!'
+                    description = 'error! ask again!'
                 )
                 await interaction.followup.send(embed=embedvc)
             else:
                 embedvc = discord.Embed(
                     colour= 32768,#green
-                    description = f"Você adicionou **{song['title']}** à fila!"
+                    description = f"you add **{song['title']}** to queue!"
                 )
                 await interaction.followup.send(embed=embedvc,view=TutorialButton())
                 self.music_queue.append([song, voice_channel])
